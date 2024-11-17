@@ -1,0 +1,3 @@
+[console_scripts]
+client = rn1.client:main
+
