@@ -1,6 +1,6 @@
 # RESTAPI
 
-## The REST API is supposed to have following functions:
+## The REST API has following functions:
 
 a. one POST mission endpoint which accepts json
 
