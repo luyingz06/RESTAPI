@@ -1,0 +1,34 @@
+// generated from rosidl_adapter/resource/action.idl.em
+// with input from action_interfaces/action/Mission.action
+// generated code does not contain a copyright notice
+
+
+module action_interfaces {
+  module action {
+    @verbatim (language="comment", text=
+      " Goal message")
+    struct Mission_Goal {
+      int32 id;
+
+      string action;
+
+      int32 order;
+    };
+    struct Mission_Result {
+      @verbatim (language="comment", text=
+        " Result message")
+      boolean success;
+
+      string message;
+
+      sequence<string> sequence;
+    };
+    struct Mission_Feedback {
+      @verbatim (language="comment", text=
+        " Feedback message")
+      string feedback_message;
+
+      sequence<string> sequence;
+    };
+  };
+};

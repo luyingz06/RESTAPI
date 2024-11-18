@@ -1,0 +1,24 @@
+[0.476s] Invoking command in '/home/aurora/RESTAPI/ros2_ws/src/rn1': CONDA_PROMPT_MODIFIER=(ros2) PYTHONPATH=/home/aurora/RESTAPI/ros2_ws/build/rn1/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aurora/RESTAPI/ros2_ws/install/rn1/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/rn1 build --build-base /home/aurora/RESTAPI/ros2_ws/build/rn1/build install --record /home/aurora/RESTAPI/ros2_ws/build/rn1/install.log --install-scripts $base/lib/rn1 --single-version-externally-managed install_data
+[0.577s] running egg_info
+[0.578s] writing ../../build/rn1/rn1.egg-info/PKG-INFO
+[0.578s] writing dependency_links to ../../build/rn1/rn1.egg-info/dependency_links.txt
+[0.578s] writing entry points to ../../build/rn1/rn1.egg-info/entry_points.txt
+[0.578s] writing requirements to ../../build/rn1/rn1.egg-info/requires.txt
+[0.578s] writing top-level names to ../../build/rn1/rn1.egg-info/top_level.txt
+[0.593s] reading manifest file '../../build/rn1/rn1.egg-info/SOURCES.txt'
+[0.593s] writing manifest file '../../build/rn1/rn1.egg-info/SOURCES.txt'
+[0.593s] running build
+[0.593s] running build_py
+[0.593s] copying rn1/client.py -> /home/aurora/RESTAPI/ros2_ws/build/rn1/build/lib/rn1
+[0.594s] running install
+[0.594s] running install_lib
+[0.594s] copying /home/aurora/RESTAPI/ros2_ws/build/rn1/build/lib/rn1/client.py -> /home/aurora/RESTAPI/ros2_ws/install/rn1/lib/python3.8/site-packages/rn1
+[0.594s] byte-compiling /home/aurora/RESTAPI/ros2_ws/install/rn1/lib/python3.8/site-packages/rn1/client.py to client.cpython-38.pyc
+[0.595s] running install_data
+[0.595s] running install_egg_info
+[0.596s] removing '/home/aurora/RESTAPI/ros2_ws/install/rn1/lib/python3.8/site-packages/rn1-0.0.0-py3.8.egg-info' (and everything under it)
+[0.596s] Copying ../../build/rn1/rn1.egg-info to /home/aurora/RESTAPI/ros2_ws/install/rn1/lib/python3.8/site-packages/rn1-0.0.0-py3.8.egg-info
+[0.597s] running install_scripts
+[0.604s] Installing client script to /home/aurora/RESTAPI/ros2_ws/install/rn1/lib/rn1
+[0.604s] writing list of installed files to '/home/aurora/RESTAPI/ros2_ws/build/rn1/install.log'
+[0.616s] Invoked command in '/home/aurora/RESTAPI/ros2_ws/src/rn1' returned '0': CONDA_PROMPT_MODIFIER=(ros2) PYTHONPATH=/home/aurora/RESTAPI/ros2_ws/build/rn1/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aurora/RESTAPI/ros2_ws/install/rn1/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/rn1 build --build-base /home/aurora/RESTAPI/ros2_ws/build/rn1/build install --record /home/aurora/RESTAPI/ros2_ws/build/rn1/install.log --install-scripts $base/lib/rn1 --single-version-externally-managed install_data

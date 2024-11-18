@@ -1,0 +1,37 @@
+[0.009s] Invoking command in '/home/aurora/RESTAPI/ros2_ws/build/action_interfaces': CMAKE_PREFIX_PATH=/opt/ros/foxy CONDA_PROMPT_MODIFIER=(ros2) /usr/bin/cmake /home/aurora/RESTAPI/ros2_ws/src/action_interfaces -DCMAKE_INSTALL_PREFIX=/home/aurora/RESTAPI/ros2_ws/install/action_interfaces
+[0.058s] -- The C compiler identification is GNU 9.4.0
+[0.109s] -- The CXX compiler identification is GNU 9.4.0
+[0.116s] -- Check for working C compiler: /usr/bin/cc
+[0.173s] -- Check for working C compiler: /usr/bin/cc -- works
+[0.175s] -- Detecting C compiler ABI info
+[0.249s] -- Detecting C compiler ABI info - done
+[0.255s] -- Detecting C compile features
+[0.256s] -- Detecting C compile features - done
+[0.257s] -- Check for working CXX compiler: /usr/bin/c++
+[0.330s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[0.332s] -- Detecting CXX compiler ABI info
+[0.409s] -- Detecting CXX compiler ABI info - done
+[0.419s] -- Detecting CXX compile features
+[0.419s] -- Detecting CXX compile features - done
+[0.420s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.440s] -- Found PythonInterp: /home/aurora/miniconda3/envs/ros2/bin/python3 (found suitable version "3.8", minimum required is "3") 
+[0.440s] -- Using PYTHON_EXECUTABLE: /home/aurora/miniconda3/envs/ros2/bin/python3
+[0.542s] -- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[0.604s] -- Found rosidl_default_generators: 1.0.1 (/opt/ros/foxy/share/rosidl_default_generators/cmake)
+[0.606s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.609s] -- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.718s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+[0.746s] -- Found FastRTPS: /opt/ros/foxy/include  
+[0.809s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.843s] -- Found PythonInterp: /home/aurora/miniconda3/envs/ros2/bin/python3 (found version "3.8") 
+[0.915s] CMake Error at /opt/ros/foxy/share/rosidl_cmake/cmake/rosidl_generate_interfaces.cmake:229 (message):
+[0.915s]   Packages installing interfaces must include
+[0.915s]   '<member_of_group>rosidl_interface_packages</member_of_group>' in their
+[0.916s]   package.xml
+[0.916s] Call Stack (most recent call first):
+[0.916s]   CMakeLists.txt:37 (rosidl_generate_interfaces)
+[0.916s] 
+[0.916s] 
+[0.916s] -- Configuring incomplete, errors occurred!
+[0.917s] See also "/home/aurora/RESTAPI/ros2_ws/build/action_interfaces/CMakeFiles/CMakeOutput.log".
+[0.921s] Invoked command in '/home/aurora/RESTAPI/ros2_ws/build/action_interfaces' returned '1': CMAKE_PREFIX_PATH=/opt/ros/foxy CONDA_PROMPT_MODIFIER=(ros2) /usr/bin/cmake /home/aurora/RESTAPI/ros2_ws/src/action_interfaces -DCMAKE_INSTALL_PREFIX=/home/aurora/RESTAPI/ros2_ws/install/action_interfaces

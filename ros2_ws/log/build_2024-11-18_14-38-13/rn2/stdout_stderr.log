@@ -1,0 +1,22 @@
+running egg_info
+writing ../../build/rn2/rn2.egg-info/PKG-INFO
+writing dependency_links to ../../build/rn2/rn2.egg-info/dependency_links.txt
+writing entry points to ../../build/rn2/rn2.egg-info/entry_points.txt
+writing requirements to ../../build/rn2/rn2.egg-info/requires.txt
+writing top-level names to ../../build/rn2/rn2.egg-info/top_level.txt
+reading manifest file '../../build/rn2/rn2.egg-info/SOURCES.txt'
+writing manifest file '../../build/rn2/rn2.egg-info/SOURCES.txt'
+running build
+running build_py
+copying rn2/server.py -> /home/aurora/RESTAPI/ros2_ws/build/rn2/build/lib/rn2
+running install
+running install_lib
+copying /home/aurora/RESTAPI/ros2_ws/build/rn2/build/lib/rn2/server.py -> /home/aurora/RESTAPI/ros2_ws/install/rn2/lib/python3.8/site-packages/rn2
+byte-compiling /home/aurora/RESTAPI/ros2_ws/install/rn2/lib/python3.8/site-packages/rn2/server.py to server.cpython-38.pyc
+running install_data
+running install_egg_info
+removing '/home/aurora/RESTAPI/ros2_ws/install/rn2/lib/python3.8/site-packages/rn2-0.0.0-py3.8.egg-info' (and everything under it)
+Copying ../../build/rn2/rn2.egg-info to /home/aurora/RESTAPI/ros2_ws/install/rn2/lib/python3.8/site-packages/rn2-0.0.0-py3.8.egg-info
+running install_scripts
+Installing server script to /home/aurora/RESTAPI/ros2_ws/install/rn2/lib/rn2
+writing list of installed files to '/home/aurora/RESTAPI/ros2_ws/build/rn2/install.log'

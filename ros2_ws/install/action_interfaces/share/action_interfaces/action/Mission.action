@@ -1,0 +1,15 @@
+# Goal message
+int32 id
+string action
+int32 order
+
+---
+# Result message
+bool success
+string message
+string[] sequence
+
+---
+# Feedback message
+string feedback_message
+string[] sequence 

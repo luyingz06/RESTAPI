@@ -1,0 +1,2 @@
+Invoking command in '/home/aurora/RESTAPI/ros2_ws/build/action_interfaces': CMAKE_PREFIX_PATH=/opt/ros/foxy CONDA_PROMPT_MODIFIER=(ros2) /usr/bin/cmake --build /home/aurora/RESTAPI/ros2_ws/build/action_interfaces -- -j32 -l32
+Invoked command in '/home/aurora/RESTAPI/ros2_ws/build/action_interfaces' returned '2': CMAKE_PREFIX_PATH=/opt/ros/foxy CONDA_PROMPT_MODIFIER=(ros2) /usr/bin/cmake --build /home/aurora/RESTAPI/ros2_ws/build/action_interfaces -- -j32 -l32
