@@ -12,7 +12,7 @@ class RN1(Node):
     def __init__(self):
         super().__init__('rn1')
         self.client = ActionClient(self, Mission, 'mission')
-        self.api_url = 'http://127.0.0.1:5000/mission'  # REST API URL
+        self.api_url = 'http://127.0.0.1:5001/mission'  # REST API URL
         self.get_logger().info('RN1 node started')
 
         # Create a timer to poll the API every second
@@ -21,34 +21,27 @@ class RN1(Node):
     def poll_api_and_send_action(self):
         """
         Polls the REST API endpoint and sends action goals to the Action Server.
+        This method is called every second.
         """
         try:
             self.get_logger().info("Attempting to fetch data from REST API...")
             response = requests.get(self.api_url, timeout=5)
-            response.raise_for_status()
-            missions = response.json()
+            response.raise_for_status()  # Will raise an error if the status code is not 200
             
-            # missions is: {'missions': [{'action': 'scan', 'id': 1, 'order': 10}]}
-            # missions['missions'][0] is: {'action': 'scan', 'id': 1, 'order': 10}
-            if missions:
-                if missions and 'missions' in missions and all(
-                    {'id', 'action', 'order'}.issubset(mission.keys()) for mission in missions['missions']
-                    ):
-                    self.get_logger().info(f"Processing all missions: {missions['missions']}")
-                
-                    # Send all missions as a single goal
-                    self.send_action_goal(missions['missions'])
-                else:
-                    self.get_logger().warn("Incomplete mission data received")
+            # Check if response contains valid mission data
+            missions = response.json()
+            if missions and 'missions' in missions and all(
+                {'id', 'action', 'order'}.issubset(mission.keys()) for mission in missions['missions']):
+                self.get_logger().info(f"Processing all missions: {missions['missions']}")
+                # Send all missions as a single goal
+                self.send_action_goal(missions['missions'])
             else:
-                self.get_logger().info("No new missions found")
+                self.get_logger().warn("Incomplete mission data received or empty missions list")
 
-        except requests.exceptions.ConnectionError:
-            self.get_logger().error("Failed to connect to API: Connection error")
-        except requests.exceptions.Timeout:
-            self.get_logger().error("Failed to connect to API: Timeout error")
-        except requests.RequestException as e:
-            self.get_logger().error(f"API request failed: {e}")
+        except requests.exceptions.RequestException as e:
+            self.get_logger().error(f"Error fetching data from the API: {e}")
+        except Exception as e:
+            self.get_logger().error(f"Unexpected error: {e}")
 
     def send_action_goal(self, missions):
         """
@@ -83,7 +76,6 @@ class RN1(Node):
 
         except Exception as e:
             self.get_logger().error(f"Failed to send action goal: {e}")
-
 
     def feedback_callback(self, feedback_msg):
         """
@@ -127,7 +119,6 @@ class RN1(Node):
         self.get_logger().info("Shutting down RN1 node")
         super().destroy_node()
 
-
 def main(args=None):
     """
     Main entry point for the RN1 node.
@@ -142,7 +133,5 @@ def main(args=None):
         node.destroy_node()
         rclpy.shutdown()
 
-
 if __name__ == '__main__':
     main()
-
