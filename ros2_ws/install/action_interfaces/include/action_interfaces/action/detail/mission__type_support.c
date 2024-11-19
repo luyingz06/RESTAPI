@@ -13,7 +13,10 @@
 
 
 // Include directives for member types
-// Member `action`
+// Member `ids`
+// Member `orders`
+#include "rosidl_runtime_c/primitives_sequence_functions.h"
+// Member `actions`
 #include "rosidl_runtime_c/string_functions.h"
 
 #ifdef __cplusplus
@@ -37,14 +40,14 @@ void Mission_Goal__rosidl_typesupport_introspection_c__Mission_Goal_fini_functio
 
 static rosidl_typesupport_introspection_c__MessageMember Mission_Goal__rosidl_typesupport_introspection_c__Mission_Goal_message_member_array[3] = {
   {
-    "id",  // name
+    "ids",  // name
     rosidl_typesupport_introspection_c__ROS_TYPE_INT32,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
-    false,  // is array
+    true,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(action_interfaces__action__Mission_Goal, id),  // bytes offset in struct
+    offsetof(action_interfaces__action__Mission_Goal, ids),  // bytes offset in struct
     NULL,  // default value
     NULL,  // size() function pointer
     NULL,  // get_const(index) function pointer
@@ -52,14 +55,14 @@ static rosidl_typesupport_introspection_c__MessageMember Mission_Goal__rosidl_ty
     NULL  // resize(index) function pointer
   },
   {
-    "action",  // name
+    "actions",  // name
     rosidl_typesupport_introspection_c__ROS_TYPE_STRING,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
-    false,  // is array
+    true,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(action_interfaces__action__Mission_Goal, action),  // bytes offset in struct
+    offsetof(action_interfaces__action__Mission_Goal, actions),  // bytes offset in struct
     NULL,  // default value
     NULL,  // size() function pointer
     NULL,  // get_const(index) function pointer
@@ -67,14 +70,14 @@ static rosidl_typesupport_introspection_c__MessageMember Mission_Goal__rosidl_ty
     NULL  // resize(index) function pointer
   },
   {
-    "order",  // name
+    "orders",  // name
     rosidl_typesupport_introspection_c__ROS_TYPE_INT32,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
-    false,  // is array
+    true,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(action_interfaces__action__Mission_Goal, order),  // bytes offset in struct
+    offsetof(action_interfaces__action__Mission_Goal, orders),  // bytes offset in struct
     NULL,  // default value
     NULL,  // size() function pointer
     NULL,  // get_const(index) function pointer

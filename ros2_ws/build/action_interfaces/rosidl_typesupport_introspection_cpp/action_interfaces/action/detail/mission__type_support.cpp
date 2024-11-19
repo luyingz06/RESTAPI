@@ -37,51 +37,132 @@ void Mission_Goal_fini_function(void * message_memory)
   typed_message->~Mission_Goal();
 }
 
+size_t size_function__Mission_Goal__ids(const void * untyped_member)
+{
+  const auto * member = reinterpret_cast<const std::vector<int32_t> *>(untyped_member);
+  return member->size();
+}
+
+const void * get_const_function__Mission_Goal__ids(const void * untyped_member, size_t index)
+{
+  const auto & member =
+    *reinterpret_cast<const std::vector<int32_t> *>(untyped_member);
+  return &member[index];
+}
+
+void * get_function__Mission_Goal__ids(void * untyped_member, size_t index)
+{
+  auto & member =
+    *reinterpret_cast<std::vector<int32_t> *>(untyped_member);
+  return &member[index];
+}
+
+void resize_function__Mission_Goal__ids(void * untyped_member, size_t size)
+{
+  auto * member =
+    reinterpret_cast<std::vector<int32_t> *>(untyped_member);
+  member->resize(size);
+}
+
+size_t size_function__Mission_Goal__actions(const void * untyped_member)
+{
+  const auto * member = reinterpret_cast<const std::vector<std::string> *>(untyped_member);
+  return member->size();
+}
+
+const void * get_const_function__Mission_Goal__actions(const void * untyped_member, size_t index)
+{
+  const auto & member =
+    *reinterpret_cast<const std::vector<std::string> *>(untyped_member);
+  return &member[index];
+}
+
+void * get_function__Mission_Goal__actions(void * untyped_member, size_t index)
+{
+  auto & member =
+    *reinterpret_cast<std::vector<std::string> *>(untyped_member);
+  return &member[index];
+}
+
+void resize_function__Mission_Goal__actions(void * untyped_member, size_t size)
+{
+  auto * member =
+    reinterpret_cast<std::vector<std::string> *>(untyped_member);
+  member->resize(size);
+}
+
+size_t size_function__Mission_Goal__orders(const void * untyped_member)
+{
+  const auto * member = reinterpret_cast<const std::vector<int32_t> *>(untyped_member);
+  return member->size();
+}
+
+const void * get_const_function__Mission_Goal__orders(const void * untyped_member, size_t index)
+{
+  const auto & member =
+    *reinterpret_cast<const std::vector<int32_t> *>(untyped_member);
+  return &member[index];
+}
+
+void * get_function__Mission_Goal__orders(void * untyped_member, size_t index)
+{
+  auto & member =
+    *reinterpret_cast<std::vector<int32_t> *>(untyped_member);
+  return &member[index];
+}
+
+void resize_function__Mission_Goal__orders(void * untyped_member, size_t size)
+{
+  auto * member =
+    reinterpret_cast<std::vector<int32_t> *>(untyped_member);
+  member->resize(size);
+}
+
 static const ::rosidl_typesupport_introspection_cpp::MessageMember Mission_Goal_message_member_array[3] = {
   {
-    "id",  // name
+    "ids",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT32,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
-    false,  // is array
+    true,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(action_interfaces::action::Mission_Goal, id),  // bytes offset in struct
+    offsetof(action_interfaces::action::Mission_Goal, ids),  // bytes offset in struct
     nullptr,  // default value
-    nullptr,  // size() function pointer
-    nullptr,  // get_const(index) function pointer
-    nullptr,  // get(index) function pointer
-    nullptr  // resize(index) function pointer
+    size_function__Mission_Goal__ids,  // size() function pointer
+    get_const_function__Mission_Goal__ids,  // get_const(index) function pointer
+    get_function__Mission_Goal__ids,  // get(index) function pointer
+    resize_function__Mission_Goal__ids  // resize(index) function pointer
   },
   {
-    "action",  // name
+    "actions",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_STRING,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
-    false,  // is array
+    true,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(action_interfaces::action::Mission_Goal, action),  // bytes offset in struct
+    offsetof(action_interfaces::action::Mission_Goal, actions),  // bytes offset in struct
     nullptr,  // default value
-    nullptr,  // size() function pointer
-    nullptr,  // get_const(index) function pointer
-    nullptr,  // get(index) function pointer
-    nullptr  // resize(index) function pointer
+    size_function__Mission_Goal__actions,  // size() function pointer
+    get_const_function__Mission_Goal__actions,  // get_const(index) function pointer
+    get_function__Mission_Goal__actions,  // get(index) function pointer
+    resize_function__Mission_Goal__actions  // resize(index) function pointer
   },
   {
-    "order",  // name
+    "orders",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT32,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
-    false,  // is array
+    true,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(action_interfaces::action::Mission_Goal, order),  // bytes offset in struct
+    offsetof(action_interfaces::action::Mission_Goal, orders),  // bytes offset in struct
     nullptr,  // default value
-    nullptr,  // size() function pointer
-    nullptr,  // get_const(index) function pointer
-    nullptr,  // get(index) function pointer
-    nullptr  // resize(index) function pointer
+    size_function__Mission_Goal__orders,  // size() function pointer
+    get_const_function__Mission_Goal__orders,  // get_const(index) function pointer
+    get_function__Mission_Goal__orders,  // get(index) function pointer
+    resize_function__Mission_Goal__orders  // resize(index) function pointer
   }
 };
 

@@ -5,6 +5,10 @@
 
 # Import statements for member types
 
+# Member 'ids'
+# Member 'orders'
+import array  # noqa: E402, I100
+
 import rosidl_parser.definition  # noqa: E402, I100
 
 
@@ -53,30 +57,30 @@ class Mission_Goal(metaclass=Metaclass_Mission_Goal):
     """Message class 'Mission_Goal'."""
 
     __slots__ = [
-        '_id',
-        '_action',
-        '_order',
+        '_ids',
+        '_actions',
+        '_orders',
     ]
 
     _fields_and_field_types = {
-        'id': 'int32',
-        'action': 'string',
-        'order': 'int32',
+        'ids': 'sequence<int32>',
+        'actions': 'sequence<string>',
+        'orders': 'sequence<int32>',
     }
 
     SLOT_TYPES = (
-        rosidl_parser.definition.BasicType('int32'),  # noqa: E501
-        rosidl_parser.definition.UnboundedString(),  # noqa: E501
-        rosidl_parser.definition.BasicType('int32'),  # noqa: E501
+        rosidl_parser.definition.UnboundedSequence(rosidl_parser.definition.BasicType('int32')),  # noqa: E501
+        rosidl_parser.definition.UnboundedSequence(rosidl_parser.definition.UnboundedString()),  # noqa: E501
+        rosidl_parser.definition.UnboundedSequence(rosidl_parser.definition.BasicType('int32')),  # noqa: E501
     )
 
     def __init__(self, **kwargs):
         assert all('_' + key in self.__slots__ for key in kwargs.keys()), \
             'Invalid arguments passed to constructor: %s' % \
             ', '.join(sorted(k for k in kwargs.keys() if '_' + k not in self.__slots__))
-        self.id = kwargs.get('id', int())
-        self.action = kwargs.get('action', str())
-        self.order = kwargs.get('order', int())
+        self.ids = array.array('i', kwargs.get('ids', []))
+        self.actions = kwargs.get('actions', [])
+        self.orders = array.array('i', kwargs.get('orders', []))
 
     def __repr__(self):
         typename = self.__class__.__module__.split('.')
@@ -107,11 +111,11 @@ class Mission_Goal(metaclass=Metaclass_Mission_Goal):
     def __eq__(self, other):
         if not isinstance(other, self.__class__):
             return False
-        if self.id != other.id:
+        if self.ids != other.ids:
             return False
-        if self.action != other.action:
+        if self.actions != other.actions:
             return False
-        if self.order != other.order:
+        if self.orders != other.orders:
             return False
         return True
 
@@ -120,48 +124,84 @@ class Mission_Goal(metaclass=Metaclass_Mission_Goal):
         from copy import copy
         return copy(cls._fields_and_field_types)
 
-    @property  # noqa: A003
-    def id(self):  # noqa: A003
-        """Message field 'id'."""
-        return self._id
+    @property
+    def ids(self):
+        """Message field 'ids'."""
+        return self._ids
 
-    @id.setter  # noqa: A003
-    def id(self, value):  # noqa: A003
+    @ids.setter
+    def ids(self, value):
+        if isinstance(value, array.array):
+            assert value.typecode == 'i', \
+                "The 'ids' array.array() must have the type code of 'i'"
+            self._ids = value
+            return
         if __debug__:
+            from collections.abc import Sequence
+            from collections.abc import Set
+            from collections import UserList
+            from collections import UserString
             assert \
-                isinstance(value, int), \
-                "The 'id' field must be of type 'int'"
-            assert value >= -2147483648 and value < 2147483648, \
-                "The 'id' field must be an integer in [-2147483648, 2147483647]"
-        self._id = value
+                ((isinstance(value, Sequence) or
+                  isinstance(value, Set) or
+                  isinstance(value, UserList)) and
+                 not isinstance(value, str) and
+                 not isinstance(value, UserString) and
+                 all(isinstance(v, int) for v in value) and
+                 all(val >= -2147483648 and val < 2147483648 for val in value)), \
+                "The 'ids' field must be a set or sequence and each value of type 'int' and each integer in [-2147483648, 2147483647]"
+        self._ids = array.array('i', value)
 
     @property
-    def action(self):
-        """Message field 'action'."""
-        return self._action
+    def actions(self):
+        """Message field 'actions'."""
+        return self._actions
 
-    @action.setter
-    def action(self, value):
+    @actions.setter
+    def actions(self, value):
         if __debug__:
+            from collections.abc import Sequence
+            from collections.abc import Set
+            from collections import UserList
+            from collections import UserString
             assert \
-                isinstance(value, str), \
-                "The 'action' field must be of type 'str'"
-        self._action = value
+                ((isinstance(value, Sequence) or
+                  isinstance(value, Set) or
+                  isinstance(value, UserList)) and
+                 not isinstance(value, str) and
+                 not isinstance(value, UserString) and
+                 all(isinstance(v, str) for v in value) and
+                 True), \
+                "The 'actions' field must be a set or sequence and each value of type 'str'"
+        self._actions = value
 
     @property
-    def order(self):
-        """Message field 'order'."""
-        return self._order
+    def orders(self):
+        """Message field 'orders'."""
+        return self._orders
 
-    @order.setter
-    def order(self, value):
+    @orders.setter
+    def orders(self, value):
+        if isinstance(value, array.array):
+            assert value.typecode == 'i', \
+                "The 'orders' array.array() must have the type code of 'i'"
+            self._orders = value
+            return
         if __debug__:
+            from collections.abc import Sequence
+            from collections.abc import Set
+            from collections import UserList
+            from collections import UserString
             assert \
-                isinstance(value, int), \
-                "The 'order' field must be of type 'int'"
-            assert value >= -2147483648 and value < 2147483648, \
-                "The 'order' field must be an integer in [-2147483648, 2147483647]"
-        self._order = value
+                ((isinstance(value, Sequence) or
+                  isinstance(value, Set) or
+                  isinstance(value, UserList)) and
+                 not isinstance(value, str) and
+                 not isinstance(value, UserString) and
+                 all(isinstance(v, int) for v in value) and
+                 all(val >= -2147483648 and val < 2147483648 for val in value)), \
+                "The 'orders' field must be a set or sequence and each value of type 'int' and each integer in [-2147483648, 2147483647]"
+        self._orders = array.array('i', value)
 
 
 # Import statements for member types

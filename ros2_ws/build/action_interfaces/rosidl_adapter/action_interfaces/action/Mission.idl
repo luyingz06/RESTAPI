@@ -6,13 +6,19 @@
 module action_interfaces {
   module action {
     @verbatim (language="comment", text=
-      " Goal message")
+      " Goal message (batch processing)")
     struct Mission_Goal {
-      int32 id;
+      @verbatim (language="comment", text=
+        " Array of mission IDs")
+      sequence<int32> ids;
 
-      string action;
+      @verbatim (language="comment", text=
+        " Array of actions corresponding to each mission")
+      sequence<string> actions;
 
-      int32 order;
+      @verbatim (language="comment", text=
+        " Array of orders corresponding to each mission")
+      sequence<int32> orders;
     };
     struct Mission_Result {
       @verbatim (language="comment", text=
@@ -21,6 +27,8 @@ module action_interfaces {
 
       string message;
 
+      @verbatim (language="comment", text=
+        " Sequence of actions processed")
       sequence<string> sequence;
     };
     struct Mission_Feedback {
@@ -28,6 +36,8 @@ module action_interfaces {
         " Feedback message")
       string feedback_message;
 
+      @verbatim (language="comment", text=
+        " Sequence of actions being processed")
       sequence<string> sequence;
     };
   };

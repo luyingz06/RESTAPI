@@ -34,8 +34,10 @@ extern "C"
 {
 #endif
 
-#include "rosidl_runtime_c/string.h"  // action
-#include "rosidl_runtime_c/string_functions.h"  // action
+#include "rosidl_runtime_c/primitives_sequence.h"  // ids, orders
+#include "rosidl_runtime_c/primitives_sequence_functions.h"  // ids, orders
+#include "rosidl_runtime_c/string.h"  // actions
+#include "rosidl_runtime_c/string_functions.h"  // actions
 
 // forward declare type support functions
 
@@ -51,28 +53,39 @@ static bool _Mission_Goal__cdr_serialize(
     return false;
   }
   const _Mission_Goal__ros_msg_type * ros_message = static_cast<const _Mission_Goal__ros_msg_type *>(untyped_ros_message);
-  // Field name: id
+  // Field name: ids
   {
-    cdr << ros_message->id;
+    size_t size = ros_message->ids.size;
+    auto array_ptr = ros_message->ids.data;
+    cdr << static_cast<uint32_t>(size);
+    cdr.serializeArray(array_ptr, size);
   }
 
-  // Field name: action
+  // Field name: actions
   {
-    const rosidl_runtime_c__String * str = &ros_message->action;
-    if (str->capacity == 0 || str->capacity <= str->size) {
-      fprintf(stderr, "string capacity not greater than size\n");
-      return false;
+    size_t size = ros_message->actions.size;
+    auto array_ptr = ros_message->actions.data;
+    cdr << static_cast<uint32_t>(size);
+    for (size_t i = 0; i < size; ++i) {
+      const rosidl_runtime_c__String * str = &array_ptr[i];
+      if (str->capacity == 0 || str->capacity <= str->size) {
+        fprintf(stderr, "string capacity not greater than size\n");
+        return false;
+      }
+      if (str->data[str->size] != '\0') {
+        fprintf(stderr, "string not null-terminated\n");
+        return false;
+      }
+      cdr << str->data;
     }
-    if (str->data[str->size] != '\0') {
-      fprintf(stderr, "string not null-terminated\n");
-      return false;
-    }
-    cdr << str->data;
   }
 
-  // Field name: order
+  // Field name: orders
   {
-    cdr << ros_message->order;
+    size_t size = ros_message->orders.size;
+    auto array_ptr = ros_message->orders.data;
+    cdr << static_cast<uint32_t>(size);
+    cdr.serializeArray(array_ptr, size);
   }
 
   return true;
@@ -87,30 +100,63 @@ static bool _Mission_Goal__cdr_deserialize(
     return false;
   }
   _Mission_Goal__ros_msg_type * ros_message = static_cast<_Mission_Goal__ros_msg_type *>(untyped_ros_message);
-  // Field name: id
+  // Field name: ids
   {
-    cdr >> ros_message->id;
+    uint32_t cdrSize;
+    cdr >> cdrSize;
+    size_t size = static_cast<size_t>(cdrSize);
+    if (ros_message->ids.data) {
+      rosidl_runtime_c__int32__Sequence__fini(&ros_message->ids);
+    }
+    if (!rosidl_runtime_c__int32__Sequence__init(&ros_message->ids, size)) {
+      return "failed to create array for field 'ids'";
+    }
+    auto array_ptr = ros_message->ids.data;
+    cdr.deserializeArray(array_ptr, size);
   }
 
-  // Field name: action
+  // Field name: actions
   {
-    std::string tmp;
-    cdr >> tmp;
-    if (!ros_message->action.data) {
-      rosidl_runtime_c__String__init(&ros_message->action);
+    uint32_t cdrSize;
+    cdr >> cdrSize;
+    size_t size = static_cast<size_t>(cdrSize);
+    if (ros_message->actions.data) {
+      rosidl_runtime_c__String__Sequence__fini(&ros_message->actions);
     }
-    bool succeeded = rosidl_runtime_c__String__assign(
-      &ros_message->action,
-      tmp.c_str());
-    if (!succeeded) {
-      fprintf(stderr, "failed to assign string into field 'action'\n");
-      return false;
+    if (!rosidl_runtime_c__String__Sequence__init(&ros_message->actions, size)) {
+      return "failed to create array for field 'actions'";
+    }
+    auto array_ptr = ros_message->actions.data;
+    for (size_t i = 0; i < size; ++i) {
+      std::string tmp;
+      cdr >> tmp;
+      auto & ros_i = array_ptr[i];
+      if (!ros_i.data) {
+        rosidl_runtime_c__String__init(&ros_i);
+      }
+      bool succeeded = rosidl_runtime_c__String__assign(
+        &ros_i,
+        tmp.c_str());
+      if (!succeeded) {
+        fprintf(stderr, "failed to assign string into field 'actions'\n");
+        return false;
+      }
     }
   }
 
-  // Field name: order
+  // Field name: orders
   {
-    cdr >> ros_message->order;
+    uint32_t cdrSize;
+    cdr >> cdrSize;
+    size_t size = static_cast<size_t>(cdrSize);
+    if (ros_message->orders.data) {
+      rosidl_runtime_c__int32__Sequence__fini(&ros_message->orders);
+    }
+    if (!rosidl_runtime_c__int32__Sequence__init(&ros_message->orders, size)) {
+      return "failed to create array for field 'orders'";
+    }
+    auto array_ptr = ros_message->orders.data;
+    cdr.deserializeArray(array_ptr, size);
   }
 
   return true;
@@ -130,20 +176,38 @@ size_t get_serialized_size_action_interfaces__action__Mission_Goal(
   (void)padding;
   (void)wchar_size;
 
-  // field.name id
+  // field.name ids
   {
-    size_t item_size = sizeof(ros_message->id);
-    current_alignment += item_size +
+    size_t array_size = ros_message->ids.size;
+    auto array_ptr = ros_message->ids.data;
+    current_alignment += padding +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, padding);
+    (void)array_ptr;
+    size_t item_size = sizeof(array_ptr[0]);
+    current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name action
-  current_alignment += padding +
-    eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
-    (ros_message->action.size + 1);
-  // field.name order
+  // field.name actions
   {
-    size_t item_size = sizeof(ros_message->order);
-    current_alignment += item_size +
+    size_t array_size = ros_message->actions.size;
+    auto array_ptr = ros_message->actions.data;
+    current_alignment += padding +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, padding);
+    for (size_t index = 0; index < array_size; ++index) {
+      current_alignment += padding +
+        eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
+        (array_ptr[index].size + 1);
+    }
+  }
+  // field.name orders
+  {
+    size_t array_size = ros_message->orders.size;
+    auto array_ptr = ros_message->orders.data;
+    current_alignment += padding +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, padding);
+    (void)array_ptr;
+    size_t item_size = sizeof(array_ptr[0]);
+    current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
 
@@ -170,16 +234,22 @@ size_t max_serialized_size_action_interfaces__action__Mission_Goal(
   (void)wchar_size;
   (void)full_bounded;
 
-  // member: id
+  // member: ids
   {
-    size_t array_size = 1;
+    size_t array_size = 0;
+    full_bounded = false;
+    current_alignment += padding +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, padding);
 
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: action
+  // member: actions
   {
-    size_t array_size = 1;
+    size_t array_size = 0;
+    full_bounded = false;
+    current_alignment += padding +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, padding);
 
     full_bounded = false;
     for (size_t index = 0; index < array_size; ++index) {
@@ -188,9 +258,12 @@ size_t max_serialized_size_action_interfaces__action__Mission_Goal(
         1;
     }
   }
-  // member: order
+  // member: orders
   {
-    size_t array_size = 1;
+    size_t array_size = 0;
+    full_bounded = false;
+    current_alignment += padding +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, padding);
 
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));

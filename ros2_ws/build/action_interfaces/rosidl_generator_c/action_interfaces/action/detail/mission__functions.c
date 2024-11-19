@@ -12,7 +12,10 @@
 
 
 // Include directives for member types
-// Member `action`
+// Member `ids`
+// Member `orders`
+#include "rosidl_runtime_c/primitives_sequence_functions.h"
+// Member `actions`
 #include "rosidl_runtime_c/string_functions.h"
 
 bool
@@ -21,13 +24,21 @@ action_interfaces__action__Mission_Goal__init(action_interfaces__action__Mission
   if (!msg) {
     return false;
   }
-  // id
-  // action
-  if (!rosidl_runtime_c__String__init(&msg->action)) {
+  // ids
+  if (!rosidl_runtime_c__int32__Sequence__init(&msg->ids, 0)) {
     action_interfaces__action__Mission_Goal__fini(msg);
     return false;
   }
-  // order
+  // actions
+  if (!rosidl_runtime_c__String__Sequence__init(&msg->actions, 0)) {
+    action_interfaces__action__Mission_Goal__fini(msg);
+    return false;
+  }
+  // orders
+  if (!rosidl_runtime_c__int32__Sequence__init(&msg->orders, 0)) {
+    action_interfaces__action__Mission_Goal__fini(msg);
+    return false;
+  }
   return true;
 }
 
@@ -37,10 +48,12 @@ action_interfaces__action__Mission_Goal__fini(action_interfaces__action__Mission
   if (!msg) {
     return;
   }
-  // id
-  // action
-  rosidl_runtime_c__String__fini(&msg->action);
-  // order
+  // ids
+  rosidl_runtime_c__int32__Sequence__fini(&msg->ids);
+  // actions
+  rosidl_runtime_c__String__Sequence__fini(&msg->actions);
+  // orders
+  rosidl_runtime_c__int32__Sequence__fini(&msg->orders);
 }
 
 bool
@@ -49,18 +62,22 @@ action_interfaces__action__Mission_Goal__are_equal(const action_interfaces__acti
   if (!lhs || !rhs) {
     return false;
   }
-  // id
-  if (lhs->id != rhs->id) {
-    return false;
-  }
-  // action
-  if (!rosidl_runtime_c__String__are_equal(
-      &(lhs->action), &(rhs->action)))
+  // ids
+  if (!rosidl_runtime_c__int32__Sequence__are_equal(
+      &(lhs->ids), &(rhs->ids)))
   {
     return false;
   }
-  // order
-  if (lhs->order != rhs->order) {
+  // actions
+  if (!rosidl_runtime_c__String__Sequence__are_equal(
+      &(lhs->actions), &(rhs->actions)))
+  {
+    return false;
+  }
+  // orders
+  if (!rosidl_runtime_c__int32__Sequence__are_equal(
+      &(lhs->orders), &(rhs->orders)))
+  {
     return false;
   }
   return true;
@@ -74,16 +91,24 @@ action_interfaces__action__Mission_Goal__copy(
   if (!input || !output) {
     return false;
   }
-  // id
-  output->id = input->id;
-  // action
-  if (!rosidl_runtime_c__String__copy(
-      &(input->action), &(output->action)))
+  // ids
+  if (!rosidl_runtime_c__int32__Sequence__copy(
+      &(input->ids), &(output->ids)))
   {
     return false;
   }
-  // order
-  output->order = input->order;
+  // actions
+  if (!rosidl_runtime_c__String__Sequence__copy(
+      &(input->actions), &(output->actions)))
+  {
+    return false;
+  }
+  // orders
+  if (!rosidl_runtime_c__int32__Sequence__copy(
+      &(input->orders), &(output->orders)))
+  {
+    return false;
+  }
   return true;
 }
 

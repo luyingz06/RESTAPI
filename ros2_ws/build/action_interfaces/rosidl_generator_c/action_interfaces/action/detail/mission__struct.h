@@ -18,15 +18,18 @@ extern "C"
 // Constants defined in the message
 
 // Include directives for member types
-// Member 'action'
+// Member 'ids'
+// Member 'orders'
+#include "rosidl_runtime_c/primitives_sequence.h"
+// Member 'actions'
 #include "rosidl_runtime_c/string.h"
 
 // Struct defined in action/Mission in the package action_interfaces.
 typedef struct action_interfaces__action__Mission_Goal
 {
-  int32_t id;
-  rosidl_runtime_c__String action;
-  int32_t order;
+  rosidl_runtime_c__int32__Sequence ids;
+  rosidl_runtime_c__String__Sequence actions;
+  rosidl_runtime_c__int32__Sequence orders;
 } action_interfaces__action__Mission_Goal;
 
 // Struct for a sequence of action_interfaces__action__Mission_Goal.

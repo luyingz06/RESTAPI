@@ -34,55 +34,43 @@ struct Mission_Goal_
 
   explicit Mission_Goal_(rosidl_runtime_cpp::MessageInitialization _init = rosidl_runtime_cpp::MessageInitialization::ALL)
   {
-    if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
-      rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
-    {
-      this->id = 0l;
-      this->action = "";
-      this->order = 0l;
-    }
+    (void)_init;
   }
 
   explicit Mission_Goal_(const ContainerAllocator & _alloc, rosidl_runtime_cpp::MessageInitialization _init = rosidl_runtime_cpp::MessageInitialization::ALL)
-  : action(_alloc)
   {
-    if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
-      rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
-    {
-      this->id = 0l;
-      this->action = "";
-      this->order = 0l;
-    }
+    (void)_init;
+    (void)_alloc;
   }
 
   // field types and members
-  using _id_type =
-    int32_t;
-  _id_type id;
-  using _action_type =
-    std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>;
-  _action_type action;
-  using _order_type =
-    int32_t;
-  _order_type order;
+  using _ids_type =
+    std::vector<int32_t, typename ContainerAllocator::template rebind<int32_t>::other>;
+  _ids_type ids;
+  using _actions_type =
+    std::vector<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>, typename ContainerAllocator::template rebind<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>>::other>;
+  _actions_type actions;
+  using _orders_type =
+    std::vector<int32_t, typename ContainerAllocator::template rebind<int32_t>::other>;
+  _orders_type orders;
 
   // setters for named parameter idiom
-  Type & set__id(
-    const int32_t & _arg)
+  Type & set__ids(
+    const std::vector<int32_t, typename ContainerAllocator::template rebind<int32_t>::other> & _arg)
   {
-    this->id = _arg;
+    this->ids = _arg;
     return *this;
   }
-  Type & set__action(
-    const std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other> & _arg)
+  Type & set__actions(
+    const std::vector<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>, typename ContainerAllocator::template rebind<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other>>::other> & _arg)
   {
-    this->action = _arg;
+    this->actions = _arg;
     return *this;
   }
-  Type & set__order(
-    const int32_t & _arg)
+  Type & set__orders(
+    const std::vector<int32_t, typename ContainerAllocator::template rebind<int32_t>::other> & _arg)
   {
-    this->order = _arg;
+    this->orders = _arg;
     return *this;
   }
 
@@ -128,13 +116,13 @@ struct Mission_Goal_
   // comparison operators
   bool operator==(const Mission_Goal_ & other) const
   {
-    if (this->id != other.id) {
+    if (this->ids != other.ids) {
       return false;
     }
-    if (this->action != other.action) {
+    if (this->actions != other.actions) {
       return false;
     }
-    if (this->order != other.order) {
+    if (this->orders != other.orders) {
       return false;
     }
     return true;

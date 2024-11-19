@@ -32,12 +32,18 @@ cdr_serialize(
   const action_interfaces::action::Mission_Goal & ros_message,
   eprosima::fastcdr::Cdr & cdr)
 {
-  // Member: id
-  cdr << ros_message.id;
-  // Member: action
-  cdr << ros_message.action;
-  // Member: order
-  cdr << ros_message.order;
+  // Member: ids
+  {
+    cdr << ros_message.ids;
+  }
+  // Member: actions
+  {
+    cdr << ros_message.actions;
+  }
+  // Member: orders
+  {
+    cdr << ros_message.orders;
+  }
   return true;
 }
 
@@ -47,14 +53,20 @@ cdr_deserialize(
   eprosima::fastcdr::Cdr & cdr,
   action_interfaces::action::Mission_Goal & ros_message)
 {
-  // Member: id
-  cdr >> ros_message.id;
+  // Member: ids
+  {
+    cdr >> ros_message.ids;
+  }
 
-  // Member: action
-  cdr >> ros_message.action;
+  // Member: actions
+  {
+    cdr >> ros_message.actions;
+  }
 
-  // Member: order
-  cdr >> ros_message.order;
+  // Member: orders
+  {
+    cdr >> ros_message.orders;
+  }
 
   return true;
 }
@@ -72,20 +84,36 @@ get_serialized_size(
   (void)padding;
   (void)wchar_size;
 
-  // Member: id
+  // Member: ids
   {
-    size_t item_size = sizeof(ros_message.id);
-    current_alignment += item_size +
+    size_t array_size = ros_message.ids.size();
+
+    current_alignment += padding +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, padding);
+    size_t item_size = sizeof(ros_message.ids[0]);
+    current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // Member: action
-  current_alignment += padding +
-    eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
-    (ros_message.action.size() + 1);
-  // Member: order
+  // Member: actions
   {
-    size_t item_size = sizeof(ros_message.order);
-    current_alignment += item_size +
+    size_t array_size = ros_message.actions.size();
+
+    current_alignment += padding +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, padding);
+    for (size_t index = 0; index < array_size; ++index) {
+      current_alignment += padding +
+        eprosima::fastcdr::Cdr::alignment(current_alignment, padding) +
+        (ros_message.actions[index].size() + 1);
+    }
+  }
+  // Member: orders
+  {
+    size_t array_size = ros_message.orders.size();
+
+    current_alignment += padding +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, padding);
+    size_t item_size = sizeof(ros_message.orders[0]);
+    current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
 
@@ -107,17 +135,23 @@ max_serialized_size_Mission_Goal(
   (void)full_bounded;
 
 
-  // Member: id
+  // Member: ids
   {
-    size_t array_size = 1;
+    size_t array_size = 0;
+    full_bounded = false;
+    current_alignment += padding +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, padding);
 
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
 
-  // Member: action
+  // Member: actions
   {
-    size_t array_size = 1;
+    size_t array_size = 0;
+    full_bounded = false;
+    current_alignment += padding +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, padding);
 
     full_bounded = false;
     for (size_t index = 0; index < array_size; ++index) {
@@ -127,9 +161,12 @@ max_serialized_size_Mission_Goal(
     }
   }
 
-  // Member: order
+  // Member: orders
   {
-    size_t array_size = 1;
+    size_t array_size = 0;
+    full_bounded = false;
+    current_alignment += padding +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, padding);
 
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));

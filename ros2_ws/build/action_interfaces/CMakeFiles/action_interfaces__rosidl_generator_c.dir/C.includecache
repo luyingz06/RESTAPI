@@ -19,6 +19,8 @@ string.h
 -
 rcutils/allocator.h
 /home/aurora/RESTAPI/ros2_ws/build/action_interfaces/rosidl_generator_c/action_interfaces/action/detail/rcutils/allocator.h
+rosidl_runtime_c/primitives_sequence_functions.h
+/home/aurora/RESTAPI/ros2_ws/build/action_interfaces/rosidl_generator_c/action_interfaces/action/detail/rosidl_runtime_c/primitives_sequence_functions.h
 rosidl_runtime_c/string_functions.h
 /home/aurora/RESTAPI/ros2_ws/build/action_interfaces/rosidl_generator_c/action_interfaces/action/detail/rosidl_runtime_c/string_functions.h
 unique_identifier_msgs/msg/detail/uuid__functions.h
@@ -96,6 +98,16 @@ stddef.h
 stdint.h
 -
 
+/opt/ros/foxy/include/rosidl_runtime_c/primitives_sequence_functions.h
+stdbool.h
+-
+stddef.h
+-
+rosidl_runtime_c/primitives_sequence.h
+/opt/ros/foxy/include/rosidl_runtime_c/rosidl_runtime_c/primitives_sequence.h
+rosidl_runtime_c/visibility_control.h
+/opt/ros/foxy/include/rosidl_runtime_c/rosidl_runtime_c/visibility_control.h
+
 /opt/ros/foxy/include/rosidl_runtime_c/string.h
 stddef.h
 -
@@ -153,6 +165,8 @@ stddef.h
 -
 stdint.h
 -
+rosidl_runtime_c/primitives_sequence.h
+rosidl_generator_c/action_interfaces/action/detail/rosidl_runtime_c/primitives_sequence.h
 rosidl_runtime_c/string.h
 rosidl_generator_c/action_interfaces/action/detail/rosidl_runtime_c/string.h
 unique_identifier_msgs/msg/detail/uuid__struct.h

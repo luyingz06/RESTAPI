@@ -1,15 +1,15 @@
-# Goal message
-int32 id
-string action
-int32 order
+# Goal message (batch processing)
+int32[] ids         # Array of mission IDs
+string[] actions    # Array of actions corresponding to each mission
+int32[] orders      # Array of orders corresponding to each mission
 
 ---
 # Result message
 bool success
 string message
-string[] sequence
+string[] sequence    # Sequence of actions processed
 
 ---
 # Feedback message
 string feedback_message
-string[] sequence 
+string[] sequence    # Sequence of actions being processed

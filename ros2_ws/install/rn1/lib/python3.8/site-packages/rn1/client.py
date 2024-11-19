@@ -31,11 +31,13 @@ class RN1(Node):
             # missions is: {'missions': [{'action': 'scan', 'id': 1, 'order': 10}]}
             # missions['missions'][0] is: {'action': 'scan', 'id': 1, 'order': 10}
             if missions:
-                missions_keys = missions['missions'][0].keys()
-                if 'id' in missions_keys and 'action' in missions_keys and 'order' in missions_keys:
-                    for mission in missions['missions']:
-                        self.get_logger().info(f"Processing mission: {mission}")
-                        self.send_action_goal(mission)
+                if missions and 'missions' in missions and all(
+                    {'id', 'action', 'order'}.issubset(mission.keys()) for mission in missions['missions']
+                    ):
+                    self.get_logger().info(f"Processing all missions: {missions['missions']}")
+                
+                    # Send all missions as a single goal
+                    self.send_action_goal(missions['missions'])
                 else:
                     self.get_logger().warn("Incomplete mission data received")
             else:
@@ -48,29 +50,40 @@ class RN1(Node):
         except requests.RequestException as e:
             self.get_logger().error(f"API request failed: {e}")
 
-    def send_action_goal(self, mission):
+    def send_action_goal(self, missions):
         """
-        Sends the parsed JSON data as a ROS action goal to the Action Server.
+        Sends batch missions as a single ROS action goal to the Action Server.
         """
         try:
+            if not isinstance(missions, list):
+                self.get_logger().error("Missions must be a list of mission dictionaries.")
+                return
+
+            # Prepare arrays for the goal message
+            ids = [mission['id'] for mission in missions]
+            actions = [mission['action'] for mission in missions]
+            orders = [mission['order'] for mission in missions]
+
             # Create and populate the action goal
             action_goal = Mission.Goal()
-            action_goal.id = mission['id']
-            action_goal.action = mission['action']
-            action_goal.order = mission['order']
+            action_goal.ids = ids  # List of integers for mission IDs
+            action_goal.actions = actions  # List of strings for mission actions
+            action_goal.orders = orders  # List of integers for mission orders
 
             # Wait for the Action Server to become available
             if not self.client.wait_for_server(timeout_sec=5.0):
                 self.get_logger().error("Action Server not available!")
                 return
 
-            self.get_logger().info(f"Sending action goal: {action_goal}")
+            self.get_logger().info(f"Sending batch goal to Action Server: {missions}")
 
             # Send the goal asynchronously
             send_goal_future = self.client.send_goal_async(action_goal, feedback_callback=self.feedback_callback)
             send_goal_future.add_done_callback(self.goal_response_callback)
+
         except Exception as e:
             self.get_logger().error(f"Failed to send action goal: {e}")
+
 
     def feedback_callback(self, feedback_msg):
         """

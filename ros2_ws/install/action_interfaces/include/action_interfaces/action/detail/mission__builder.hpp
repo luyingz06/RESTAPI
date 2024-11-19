@@ -20,15 +20,15 @@ namespace action
 namespace builder
 {
 
-class Init_Mission_Goal_order
+class Init_Mission_Goal_orders
 {
 public:
-  explicit Init_Mission_Goal_order(::action_interfaces::action::Mission_Goal & msg)
+  explicit Init_Mission_Goal_orders(::action_interfaces::action::Mission_Goal & msg)
   : msg_(msg)
   {}
-  ::action_interfaces::action::Mission_Goal order(::action_interfaces::action::Mission_Goal::_order_type arg)
+  ::action_interfaces::action::Mission_Goal orders(::action_interfaces::action::Mission_Goal::_orders_type arg)
   {
-    msg_.order = std::move(arg);
+    msg_.orders = std::move(arg);
     return std::move(msg_);
   }
 
@@ -36,32 +36,32 @@ private:
   ::action_interfaces::action::Mission_Goal msg_;
 };
 
-class Init_Mission_Goal_action
+class Init_Mission_Goal_actions
 {
 public:
-  explicit Init_Mission_Goal_action(::action_interfaces::action::Mission_Goal & msg)
+  explicit Init_Mission_Goal_actions(::action_interfaces::action::Mission_Goal & msg)
   : msg_(msg)
   {}
-  Init_Mission_Goal_order action(::action_interfaces::action::Mission_Goal::_action_type arg)
+  Init_Mission_Goal_orders actions(::action_interfaces::action::Mission_Goal::_actions_type arg)
   {
-    msg_.action = std::move(arg);
-    return Init_Mission_Goal_order(msg_);
+    msg_.actions = std::move(arg);
+    return Init_Mission_Goal_orders(msg_);
   }
 
 private:
   ::action_interfaces::action::Mission_Goal msg_;
 };
 
-class Init_Mission_Goal_id
+class Init_Mission_Goal_ids
 {
 public:
-  Init_Mission_Goal_id()
+  Init_Mission_Goal_ids()
   : msg_(::rosidl_runtime_cpp::MessageInitialization::SKIP)
   {}
-  Init_Mission_Goal_action id(::action_interfaces::action::Mission_Goal::_id_type arg)
+  Init_Mission_Goal_actions ids(::action_interfaces::action::Mission_Goal::_ids_type arg)
   {
-    msg_.id = std::move(arg);
-    return Init_Mission_Goal_action(msg_);
+    msg_.ids = std::move(arg);
+    return Init_Mission_Goal_actions(msg_);
   }
 
 private:
@@ -79,7 +79,7 @@ template<>
 inline
 auto build<::action_interfaces::action::Mission_Goal>()
 {
-  return action_interfaces::action::builder::Init_Mission_Goal_id();
+  return action_interfaces::action::builder::Init_Mission_Goal_ids();
 }
 
 }  // namespace action_interfaces
