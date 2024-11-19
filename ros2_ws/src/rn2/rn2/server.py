@@ -1,7 +1,13 @@
+'''
+Author: Luying Zhang
+Date: November 2024
+Description: ROS2 Node 2 (RN2): Hosts the Action Server to process Mission actions.
+'''
+
 import rclpy
 from rclpy.node import Node
 from rclpy.action import ActionServer
-from action_interfaces.action import Mission  # Replace with your custom action definition
+from action_interfaces.action import Mission
 
 class RN2(Node):
     """
@@ -55,9 +61,6 @@ class RN2(Node):
             feedback.sequence.append(f"Step {mission_order}: {mission_id, mission_action}")
             goal_handle.publish_feedback(feedback)  # Send feedback after each step
 
-            # Optionally, you can add a delay to simulate processing time for each mission
-            # await asyncio.sleep(1.0)
-
         # After completing all missions in the batch, finalize the result
         goal_handle.succeed()  # Mark the goal as succeeded
         result = Mission.Result()
@@ -88,7 +91,7 @@ def main(args=None):
     except KeyboardInterrupt:
         pass
     finally:
-        node.destroy_node()  # Clean up the node when done
+        node.destroy_node()
         rclpy.shutdown()  # Shut down ROS 2
 
 if __name__ == '__main__':

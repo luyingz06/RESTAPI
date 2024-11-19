@@ -1,3 +1,9 @@
+'''
+Author: Luying Zhang
+Date: November 2024
+Description: REST API server for receiving and storing mission data.
+'''
+
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)

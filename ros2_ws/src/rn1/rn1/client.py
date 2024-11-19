@@ -1,7 +1,13 @@
+'''
+Author: Luying Zhang
+Date: November 2024
+Description: ROS2 Node 1 (RN1): Interacts with REST API and communicates with ROS2 Action Server.
+'''
+
 import rclpy
 from rclpy.node import Node
 from rclpy.action import ActionClient
-from action_interfaces.action import Mission  # Replace with your custom action definition
+from action_interfaces.action import Mission
 import requests
 
 
